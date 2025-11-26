@@ -1,0 +1,41 @@
+{
+  "libraries": [
+    {
+      "name": "Animated Link",
+      "description": "A link component with smooth character-by-character animation on hover. Features customizable colors and stagger timing for elegant text transitions.",
+      "url": "/animated-link",
+      "componentName": "animated-link",
+      "references": [],
+      "imageUrl": "/hover_animation.png"
+    },
+    {
+      "name": "Gooey Button",
+      "description": "A button component with a gooey blob effect that creates a smooth, liquid-like animation on hover. Features customizable themes and sizes.",
+      "url": "/gooey-button",
+      "componentName": "gooey-button",
+      "references": [],
+      "imageUrl": "/gooey_button.png"
+    },
+    {
+      "name": "Gooey Menu",
+      "description": "An interactive menu component with a gooey blob effect. Features a plus icon that expands to reveal additional menu items when clicked. Uses CSS-only animations with SVG filters for the gooey effect. Note: The gooey effect may not work properly on Safari and some mobile browsers.",
+      "url": "/gooey-menu",
+      "componentName": "gooey-menu",
+      "references": [
+        {
+          "name": "amazing blob prototype by @createwithplay on X",
+          "url": "https://x.com/createwithplay/status/1797658449649742016"
+        }
+      ],
+      "imageUrl": "/gooey_menu.png"
+    },
+    {
+      "name": "Animated Entry",
+      "description": "An animation component that creates a dramatic entry effect using sliding squares that reveal content. Features customizable colors, timing, and stagger effects.",
+      "url": "/animated-entry",
+      "componentName": "entry-animation",
+      "references": [],
+      "imageUrl": "/animated_entry.png"
+    }
+  ]
+}
