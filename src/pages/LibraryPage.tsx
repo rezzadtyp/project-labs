@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Loading from "@/components/shared/loading";
 import AnimatedLink from "@/components/shared/animated-link";
 import EntryAnimation from "@/components/shared/entry-animation";
@@ -7,10 +8,16 @@ import { Button } from "@/components/ui/button";
 import CodeBlock from "@/components/ui/code-block";
 import useGetLibrary from "@/hooks/useGetLibrary";
 import useGetSourceCode from "@/hooks/useGetSourceCode";
-import { ChevronLeft, ChevronRight, Heart, Settings } from "lucide-react";
+import { ChevronLeft, ChevronRight, Heart, Settings, RotateCw } from "lucide-react";
 import { useNavigate, useParams } from "react-router-dom";
 
-const ComponentPreview = ({ componentName }: { componentName: string }) => {
+const ComponentPreview = ({ 
+  componentName,
+  refreshKey,
+}: { 
+  componentName: string;
+  refreshKey?: number;
+}) => {
   switch (componentName) {
     case "animated-link":
       return (
@@ -56,8 +63,8 @@ const ComponentPreview = ({ componentName }: { componentName: string }) => {
 
     case "entry-animation":
       return (
-        <div className="flex items-center justify-center p-8 min-h-[200px]">
-          <EntryAnimation>
+        <div className="relative flex items-center justify-center p-8 min-h-[200px]">
+          <EntryAnimation key={refreshKey}>
             <div className="text-4xl font-bold">최지우는 귀엽다</div>
           </EntryAnimation>
         </div>
@@ -80,8 +87,13 @@ const LibraryPage = () => {
     isLoading: isLoadingSource,
     error: sourceError,
   } = useGetSourceCode(data?.componentName || null);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const navigate = useNavigate();
+
+  const handleRefresh = () => {
+    setRefreshKey((prev) => prev + 1);
+  };
 
   if (!data || isLoading) return <Loading />;
 
@@ -93,8 +105,22 @@ const LibraryPage = () => {
       {/* Component Preview */}
       {data.componentName && (
         <div className="mb-8">
-          <div className="border border-border bg-background overflow-hidden">
-            <ComponentPreview componentName={data.componentName} />
+          <div className="relative border border-border bg-background overflow-hidden">
+            {data.componentName === "entry-animation" && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleRefresh}
+                className="absolute top-4 right-4 z-10 rounded-none text-xs text-muted-foreground"
+              >
+                <RotateCw className="size-4" />
+                Refresh
+              </Button>
+            )}
+            <ComponentPreview 
+              componentName={data.componentName} 
+              refreshKey={refreshKey}
+            />
           </div>
         </div>
       )}
