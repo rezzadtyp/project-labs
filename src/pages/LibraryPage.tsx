@@ -64,7 +64,7 @@ const ComponentPreview = ({
     case "entry-animation":
       return (
         <div className="relative flex items-center justify-center p-8 min-h-[200px]">
-          <EntryAnimation key={refreshKey}>
+          <EntryAnimation key={refreshKey} topSquareColor="#fff" bottomSquareColor="#D7EF3C">
             <div className="text-4xl font-bold">최지우는 귀엽다</div>
           </EntryAnimation>
         </div>
